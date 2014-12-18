@@ -15,6 +15,8 @@ setup(
     packages=[
         'grail',
     ],
+    description='Grail is a library which allows test script creation based on steps. '
+                'It helps to structure your tests and get rid of additional test documentation for your code.',
     include_package_data=True,
     author='Igor Khrol',
     author_email='i_khrol@wargaming.net',

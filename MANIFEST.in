@@ -1,2 +1,5 @@
 include index.rst
+include index.html
+include LICENSE
+include README.md
 recursive-include grail *.py

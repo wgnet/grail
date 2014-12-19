@@ -15,4 +15,4 @@ Library usage brings the following benefits to your tests:
 
 - step implementation can be done separately
 
-Usage details are available in index.html.
+More usage details are available here: http://wgnet.github.io/grail/.

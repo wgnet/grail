@@ -1,0 +1,503 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Grail &mdash; Grail 1.0.1 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="Grail 1.0.1 documentation" href="index.html"/>
+        <link rel="prev" title="Welcome to Grail’s documentation!" href="index.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        <a href="index.html" class="fa fa-home"> Grail</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+        
+            <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="">Grail</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#about">About</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#basic-usage">Basic Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#logging-parameters-and-output">Logging parameters and output</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-options">&#64;step options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#export-mode">Export Mode</a></li>
+</ul>
+</li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">Grail</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>Grail</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="_sources/main.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            
+  <div class="section" id="grail">
+<h1>Grail<a class="headerlink" href="#grail" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="about">
+<h2>About<a class="headerlink" href="#about" title="Permalink to this headline">¶</a></h2>
+<p>Grail is a library which allows test script creation based on steps.</p>
+<p>Library usage brings the following benefits to your tests:</p>
+<ul class="simple">
+<li>strict separation test logic from test implementation</li>
+<li>you don&#8217;t need separate test cases as a documentation for your tests, it will be generated from the code</li>
+<li>separate logging is not required, test execution is automatically logged</li>
+<li>test script creation is easy for people with basic programming skills</li>
+<li>step implementation can be done separately</li>
+</ul>
+</div>
+<div class="section" id="basic-usage">
+<h2>Basic Usage<a class="headerlink" href="#basic-usage" title="Permalink to this headline">¶</a></h2>
+<div class="line-block">
+<div class="line"><tt class="docutils literal"><span class="pre">&#64;step</span></tt> is a basic concept of Grail library. It&#8217;s decorator which transforms method or function to step.</div>
+<div class="line">If you want to use steps your test classes should inherit <tt class="docutils literal"><span class="pre">BaseTest</span></tt>.</div>
+<div class="line">When you are doing your tests based on Grail all your test logic should be covered with steps.</div>
+</div>
+<p>The simple test demonstrating basic usage:</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">grail</span> <span class="kn">import</span> <span class="n">BaseTest</span><span class="p">,</span> <span class="n">step</span>
+
+
+<span class="k">class</span> <span class="nc">MyFirstGrailTest</span><span class="p">(</span><span class="n">BaseTest</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">test_some_feature</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">login_to_application</span><span class="p">()</span>
+
+    <span class="nd">@step</span>
+    <span class="k">def</span> <span class="nf">login_to_application</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+</pre></div>
+</div>
+<p>Such test output will be:</p>
+<p><tt class="docutils literal"><span class="pre">PASSED</span> <span class="pre">login</span> <span class="pre">to</span> <span class="pre">application</span></tt></p>
+</div>
+<div class="section" id="logging-parameters-and-output">
+<h2>Logging parameters and output<a class="headerlink" href="#logging-parameters-and-output" title="Permalink to this headline">¶</a></h2>
+<p>When step method takes some params or return value: all the information will be logged.</p>
+<p>Example:</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">grail</span> <span class="kn">import</span> <span class="n">BaseTest</span><span class="p">,</span> <span class="n">step</span>
+<span class="kn">from</span> <span class="nn">nose.tools</span> <span class="kn">import</span> <span class="n">eq_</span>
+
+
+<span class="k">class</span> <span class="nc">MyLoggingParametersAndOutputTest</span><span class="p">(</span><span class="n">BaseTest</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">test_some_feature</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">do_some_calculation</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">second_param</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">verify_result</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+
+    <span class="nd">@step</span>
+    <span class="k">def</span> <span class="nf">do_some_calculation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">first_param</span><span class="p">,</span> <span class="n">second_param</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">first_param</span> <span class="o">+</span> <span class="n">second_param</span>
+
+    <span class="nd">@step</span>
+    <span class="k">def</span> <span class="nf">verify_result</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">actual_data</span><span class="p">):</span>
+        <span class="n">eq_</span><span class="p">(</span><span class="n">actual_data</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Output will contain all execution details:</p>
+<div class="line-block">
+<div class="line"><tt class="docutils literal"><span class="pre">PASSED</span> <span class="pre">do</span> <span class="pre">some</span> <span class="pre">calculation</span> <span class="pre">(2,</span> <span class="pre">second_param=3)</span> <span class="pre">-&gt;</span> <span class="pre">5</span></tt></div>
+<div class="line"><tt class="docutils literal"><span class="pre">PASSED</span> <span class="pre">verify</span> <span class="pre">result</span> <span class="pre">(5)</span></tt></div>
+</div>
+</div>
+<div class="section" id="step-options">
+<h2>&#64;step options<a class="headerlink" href="#step-options" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="description">
+<h3>description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h3>
+<p>By default step name is method name split by underscores. In the majority of cases it&#8217;s enough if you are writing readable code.
+But there are situations where step description is not so easy to put into method name.
+For such cases there is a <tt class="docutils literal"><span class="pre">description</span></tt> parameter.</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">grail</span> <span class="kn">import</span> <span class="n">BaseTest</span><span class="p">,</span> <span class="n">step</span>
+
+
+<span class="k">class</span> <span class="nc">MyTestWithDescription</span><span class="p">(</span><span class="n">BaseTest</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">test_some_feature</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">login_to_application</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">complex_step</span><span class="p">()</span>
+
+    <span class="nd">@step</span>
+    <span class="k">def</span> <span class="nf">login_to_application</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+    <span class="nd">@step</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s">&#39;Some tricky actions with the application which I can</span><span class="se">\&#39;</span><span class="s">t put to method name&#39;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">complex_step</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+</pre></div>
+</div>
+<p>Such test script will generate the following:</p>
+<div class="line-block">
+<div class="line"><tt class="docutils literal"><span class="pre">PASSED</span> <span class="pre">login</span> <span class="pre">to</span> <span class="pre">application</span></tt></div>
+<div class="line"><tt class="docutils literal"><span class="pre">PASSED</span> <span class="pre">Some</span> <span class="pre">tricky</span> <span class="pre">actions</span> <span class="pre">with</span> <span class="pre">the</span> <span class="pre">application</span> <span class="pre">which</span> <span class="pre">I</span> <span class="pre">can't</span> <span class="pre">put</span> <span class="pre">to</span> <span class="pre">method</span> <span class="pre">name</span></tt></div>
+</div>
+</div>
+<div class="section" id="pending">
+<h3>pending<a class="headerlink" href="#pending" title="Permalink to this headline">¶</a></h3>
+<p>If step method is created but not implemented you can specify <tt class="docutils literal"><span class="pre">pending</span></tt> property. It will fail corresponding test execution but
+at the same time you can have full test case description (e.g. for manual execution).</p>
+<p>Example:</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">grail</span> <span class="kn">import</span> <span class="n">BaseTest</span><span class="p">,</span> <span class="n">step</span>
+
+
+<span class="k">class</span> <span class="nc">MyNotFinishedTest</span><span class="p">(</span><span class="n">BaseTest</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">test_some_feature</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">first_implemented_step</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">second_pending_step</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">some_third_step</span><span class="p">()</span>
+
+    <span class="nd">@step</span>
+    <span class="k">def</span> <span class="nf">first_implemented_step</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">print</span> <span class="s">&#39;Some implemented actions&#39;</span>
+
+    <span class="nd">@step</span><span class="p">(</span><span class="n">pending</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">second_pending_step</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">print</span> <span class="s">&#39;This is not final implementation&#39;</span>
+
+    <span class="nd">@step</span>
+    <span class="k">def</span> <span class="nf">some_third_step</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">print</span> <span class="s">&#39;This step is implemented but will be Ignored and you will not see this message&#39;</span>
+</pre></div>
+</div>
+<p>Test execution output:</p>
+<div class="line-block">
+<div class="line"><tt class="docutils literal"><span class="pre">PASSED</span> <span class="pre">first</span> <span class="pre">implemented</span> <span class="pre">step</span></tt></div>
+<div class="line-block">
+<div class="line"><tt class="docutils literal"><span class="pre">Some</span> <span class="pre">implemented</span> <span class="pre">actions</span></tt></div>
+</div>
+<div class="line"><tt class="docutils literal"><span class="pre">PENDING</span> <span class="pre">second</span> <span class="pre">pending</span> <span class="pre">step</span></tt></div>
+<div class="line"><tt class="docutils literal"><span class="pre">IGNORED</span> <span class="pre">some</span> <span class="pre">third</span> <span class="pre">step</span></tt></div>
+<div class="line"><br /></div>
+<div class="line"><tt class="docutils literal"><span class="pre">Error</span></tt></div>
+<div class="line"><tt class="docutils literal"><span class="pre">Traceback</span> <span class="pre">(most</span> <span class="pre">recent</span> <span class="pre">call</span> <span class="pre">last):</span></tt></div>
+<div class="line-block">
+<div class="line"><tt class="docutils literal"><span class="pre">File</span> <span class="pre">&quot;/home/i_khrol/PyCharm/grail/grail/base_test.py&quot;,</span> <span class="pre">line</span> <span class="pre">30,</span> <span class="pre">in</span> <span class="pre">wrapper</span></tt></div>
+<div class="line-block">
+<div class="line"><tt class="docutils literal"><span class="pre">raise</span> <span class="pre">Exception('Test</span> <span class="pre">is</span> <span class="pre">failed</span> <span class="pre">as</span> <span class="pre">there</span> <span class="pre">are</span> <span class="pre">pending</span> <span class="pre">steps')</span></tt></div>
+</div>
+</div>
+<div class="line"><tt class="docutils literal"><span class="pre">Exception:</span> <span class="pre">Test</span> <span class="pre">is</span> <span class="pre">failed</span> <span class="pre">as</span> <span class="pre">there</span> <span class="pre">are</span> <span class="pre">pending</span> <span class="pre">steps</span></tt></div>
+</div>
+</div>
+<div class="section" id="step-group">
+<h3>step_group<a class="headerlink" href="#step-group" title="Permalink to this headline">¶</a></h3>
+<div class="line-block">
+<div class="line">If you want to call one step from another you should use <tt class="docutils literal"><span class="pre">step_group</span></tt>. It&#8217;s special step which is a set of other steps.</div>
+<div class="line"><em>Important</em>: Like test itself step group should be based only on steps.</div>
+</div>
+<p>Example below also shows that there is no limitation where you should store your steps.
+It could be any class method, function. You can also call the same step multiple times.</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">grail</span> <span class="kn">import</span> <span class="n">BaseTest</span><span class="p">,</span> <span class="n">step</span>
+
+
+<span class="k">class</span> <span class="nc">SomeClassWithSteps</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="nd">@step</span>
+    <span class="k">def</span> <span class="nf">step_from_another_class</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+
+<span class="nd">@step</span>
+<span class="k">def</span> <span class="nf">some_simple_action_one</span><span class="p">():</span>
+    <span class="k">pass</span>
+
+
+<span class="k">class</span> <span class="nc">MyTestWithGroup</span><span class="p">(</span><span class="n">BaseTest</span><span class="p">):</span>
+    <span class="n">external_steps</span> <span class="o">=</span> <span class="n">SomeClassWithSteps</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">test_some_feature</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">complex_step_based_on_other_steps</span><span class="p">()</span>
+
+    <span class="nd">@step</span><span class="p">(</span><span class="n">step_group</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">complex_step_based_on_other_steps</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">external_steps</span><span class="o">.</span><span class="n">step_from_another_class</span><span class="p">()</span>
+        <span class="n">some_simple_action_one</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">external_steps</span><span class="o">.</span><span class="n">step_from_another_class</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>The output:</p>
+<div class="line-block">
+<div class="line"><tt class="docutils literal"><span class="pre">PASSED</span> <span class="pre">complex</span> <span class="pre">step</span> <span class="pre">based</span> <span class="pre">on</span> <span class="pre">other</span> <span class="pre">steps</span></tt></div>
+<div class="line-block">
+<div class="line"><tt class="docutils literal"><span class="pre">PASSED</span> <span class="pre">step</span> <span class="pre">from</span> <span class="pre">another</span> <span class="pre">class</span></tt></div>
+<div class="line"><tt class="docutils literal"><span class="pre">PASSED</span> <span class="pre">some</span> <span class="pre">simple</span> <span class="pre">action</span> <span class="pre">one</span></tt></div>
+<div class="line"><tt class="docutils literal"><span class="pre">PASSED</span> <span class="pre">step</span> <span class="pre">from</span> <span class="pre">another</span> <span class="pre">class</span></tt></div>
+</div>
+</div>
+</div>
+<div class="section" id="format-description">
+<h3>format_description<a class="headerlink" href="#format-description" title="Permalink to this headline">¶</a></h3>
+<p>There are cases when you want to format your step description special way:</p>
+<ul class="simple">
+<li>skip some parameters in logging</li>
+<li>put some values in the middle of the message</li>
+</ul>
+<p>If you want to do this you should set <tt class="docutils literal"><span class="pre">format_description=True</span></tt>.
+In this case <tt class="docutils literal"><span class="pre">description.format(*args,</span> <span class="pre">**kwargs)</span></tt> will be used as step description.</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">grail</span> <span class="kn">import</span> <span class="n">BaseTest</span><span class="p">,</span> <span class="n">step</span>
+
+
+<span class="k">class</span> <span class="nc">MyVeryFormattedTest</span><span class="p">(</span><span class="n">BaseTest</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">test_some_feature</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">some_tricky_formatting</span><span class="p">(</span><span class="s">&#39;value&#39;</span><span class="p">,</span> <span class="n">kwarg_to_format</span><span class="o">=</span><span class="s">&#39;kw_value&#39;</span><span class="p">,</span> <span class="n">skip_this</span><span class="o">=</span><span class="mi">100500</span><span class="p">)</span>
+
+    <span class="nd">@step</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s">&#39;Some info: {0}, another info: {kwarg_to_format}&#39;</span><span class="p">,</span> <span class="n">format_description</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">some_tricky_formatting</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">arg_to_format</span><span class="p">,</span> <span class="n">kwarg_to_format</span><span class="p">,</span> <span class="n">skip_this</span><span class="p">):</span>
+        <span class="k">print</span> <span class="n">arg_to_format</span>
+        <span class="k">print</span> <span class="n">kwarg_to_format</span>
+        <span class="k">print</span> <span class="n">skip_this</span>
+</pre></div>
+</div>
+<p>Output will be like this:</p>
+<div class="line-block">
+<div class="line"><tt class="docutils literal"><span class="pre">PASSED</span> <span class="pre">Some</span> <span class="pre">info:</span> <span class="pre">value,</span> <span class="pre">another</span> <span class="pre">info:</span> <span class="pre">kw_value</span></tt></div>
+<div class="line-block">
+<div class="line"><tt class="docutils literal"><span class="pre">value</span></tt></div>
+<div class="line"><tt class="docutils literal"><span class="pre">kw_value</span></tt></div>
+<div class="line"><tt class="docutils literal"><span class="pre">100500</span></tt></div>
+</div>
+</div>
+</div>
+<div class="section" id="treat-nested-steps-as-methods">
+<h3>treat_nested_steps_as_methods<a class="headerlink" href="#treat-nested-steps-as-methods" title="Permalink to this headline">¶</a></h3>
+<p>It&#8217;s forbidden to call steps from each other if it&#8217;s not step group.
+But if you <em>really</em> need it you can tell caller to ignore <tt class="docutils literal"><span class="pre">&#64;step</span></tt> functionality within itself.</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">grail</span> <span class="kn">import</span> <span class="n">BaseTest</span><span class="p">,</span> <span class="n">step</span>
+
+
+<span class="k">class</span> <span class="nc">DoItInVerySpecialCases</span><span class="p">(</span><span class="n">BaseTest</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">test_its_not_recommended_to_do_this</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">external_step</span><span class="p">()</span>
+
+    <span class="nd">@step</span><span class="p">(</span><span class="n">treat_nested_steps_as_methods</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">external_step</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">this_is_not_a_step_anymore</span><span class="p">()</span>
+
+    <span class="nd">@step</span>
+    <span class="k">def</span> <span class="nf">this_is_not_a_step_anymore</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+</pre></div>
+</div>
+<p>Output will not contain description for the internal step:</p>
+<div class="line-block">
+<div class="line"><tt class="docutils literal"><span class="pre">PASSED</span> <span class="pre">external</span> <span class="pre">step</span></tt></div>
+</div>
+</div>
+<div class="section" id="log-output">
+<h3>log_output<a class="headerlink" href="#log-output" title="Permalink to this headline">¶</a></h3>
+<p>There are cases when method output is too huge or it not interested in logging at all. You can switch off output logging for step.</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">grail</span> <span class="kn">import</span> <span class="n">BaseTest</span><span class="p">,</span> <span class="n">step</span>
+
+
+<span class="k">class</span> <span class="nc">MyDisableLogOutputTest</span><span class="p">(</span><span class="n">BaseTest</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">test_some_feature</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">log_output</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">do_not_log_output</span><span class="p">()</span>
+
+    <span class="nd">@step</span>
+    <span class="k">def</span> <span class="nf">log_output</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s">&#39;Important output&#39;</span>
+
+    <span class="nd">@step</span><span class="p">(</span><span class="n">log_output</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">do_not_log_output</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s">&#39;Some invisible in logs data&#39;</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="line-block">
+<div class="line"><tt class="docutils literal"><span class="pre">PASSED</span> <span class="pre">log</span> <span class="pre">output</span> <span class="pre">-&gt;</span> <span class="pre">Important</span> <span class="pre">output</span></tt></div>
+<div class="line"><tt class="docutils literal"><span class="pre">PASSED</span> <span class="pre">do</span> <span class="pre">not</span> <span class="pre">log</span> <span class="pre">output</span></tt></div>
+</div>
+</div>
+</div>
+<div class="section" id="export-mode">
+<h2>Export Mode<a class="headerlink" href="#export-mode" title="Permalink to this headline">¶</a></h2>
+<p>Regular test automation process assumes some manual test cases that should be automated.
+With Grail you can do vise versa - write code and get manual test cases.
+In order to generate test description from the code you should set <tt class="docutils literal"><span class="pre">grail.settings.export_mode=True</span></tt>.
+With this setting tests will be executed but steps&#8217; internal will not be called.
+So you can have your test description when your scripts are not implemented yet or
+automated test execution is blocked due to any other reasons.</p>
+<div class="section" id="important-things-to-keep-in-mind">
+<h3>Important things to keep in mind<a class="headerlink" href="#important-things-to-keep-in-mind" title="Permalink to this headline">¶</a></h3>
+<p>In <tt class="docutils literal"><span class="pre">export_mode</span></tt> only <tt class="docutils literal"><span class="pre">setUp</span></tt> and tests are executed. All the fixtures are skipped.
+It&#8217;s important to have your <tt class="docutils literal"><span class="pre">setUp</span></tt> and tests be implemented fully with <tt class="docutils literal"><span class="pre">&#64;step</span></tt>-annotated methods and functions.
+For other fixtures it&#8217;s up-to-you to use steps or not.</p>
+<p>All <tt class="docutils literal"><span class="pre">&#64;step</span></tt> features are enabled during export.</p>
+<p>Empty params are not included to step description in <tt class="docutils literal"><span class="pre">export_mode</span></tt>.</p>
+</div>
+<div class="section" id="example">
+<h3>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h3>
+<p>This test output could be used as manual test case. E.g. you can store it in your favorite test management system.</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">grail</span> <span class="kn">import</span> <span class="n">BaseTest</span><span class="p">,</span> <span class="n">step</span>
+<span class="kn">import</span> <span class="nn">grail.settings</span>
+
+<span class="n">grail</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">export_mode</span> <span class="o">=</span> <span class="bp">True</span>
+
+
+<span class="k">class</span> <span class="nc">MyTestForExport</span><span class="p">(</span><span class="n">BaseTest</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">test_some_feature</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">login_to_application</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">one_more_step</span><span class="p">(</span><span class="s">&#39;Step input 1&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pending_step</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">step_group</span><span class="p">()</span>
+
+    <span class="nd">@step</span>
+    <span class="k">def</span> <span class="nf">login_to_application</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+    <span class="nd">@step</span>
+    <span class="k">def</span> <span class="nf">one_more_step</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">step_input</span><span class="p">):</span>
+        <span class="k">print</span> <span class="s">&#39;You will not see next line print&#39;</span>
+        <span class="k">print</span> <span class="n">step_input</span>
+
+    <span class="nd">@step</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s">&#39;Some step that will be implemented&#39;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">pending_step</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+    <span class="nd">@step</span><span class="p">(</span><span class="n">step_group</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">step_group</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">one_more_step</span><span class="p">(</span><span class="s">&#39;Step input 2&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">one_more_step</span><span class="p">(</span><span class="bp">None</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Output which can be used as manual test case:</p>
+<div class="line-block">
+<div class="line"><tt class="docutils literal"><span class="pre">login</span> <span class="pre">to</span> <span class="pre">application</span></tt></div>
+<div class="line"><tt class="docutils literal"><span class="pre">one</span> <span class="pre">more</span> <span class="pre">step</span> <span class="pre">(Step</span> <span class="pre">input</span> <span class="pre">1)</span></tt></div>
+<div class="line"><tt class="docutils literal"><span class="pre">Some</span> <span class="pre">step</span> <span class="pre">that</span> <span class="pre">will</span> <span class="pre">be</span> <span class="pre">implemented</span></tt></div>
+<div class="line"><tt class="docutils literal"><span class="pre">step</span> <span class="pre">group</span></tt></div>
+<div class="line-block">
+<div class="line"><tt class="docutils literal"><span class="pre">one</span> <span class="pre">more</span> <span class="pre">step</span> <span class="pre">(Step</span> <span class="pre">input</span> <span class="pre">2)</span></tt></div>
+<div class="line"><tt class="docutils literal"><span class="pre">one</span> <span class="pre">more</span> <span class="pre">step</span></tt></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="Welcome to Grail’s documentation!"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, Wargaming.net.
+    </p>
+  </div>
+
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

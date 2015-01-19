@@ -78,6 +78,9 @@ class TestStepLogic(TestCase):
         self.step1()
         self.step2()
 
+    def setUp(self):
+        grail.state.is_test_wrapped = True
+
     def tearDown(self):
         grail.state.reset()
 

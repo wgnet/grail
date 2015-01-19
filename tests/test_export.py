@@ -50,6 +50,7 @@ def step_with_kwargs(**kwargs):
 
 class TestExport(TestCase):
     def setUp(self):
+        state.reset()
         settings.export_mode = True
 
     def tearDown(self):

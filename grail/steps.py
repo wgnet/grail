@@ -74,6 +74,18 @@ def _execute(step_info):
 
     _validate_step_info(step_info)
     output, result, exception_instance = None, None, None
+
+    def print_to_console():
+        redirected_out.out_to_console()
+        state.step_execution_started = False
+        console_message = redirected_out.get_captured_output()
+        state.indentation = state.indentation[:-len(settings.indentation_const)]
+        print_message = step_info.get_description(output, result, exception_instance)
+        if console_message:
+            print_message += '\n'
+            print_message += console_message.rstrip()
+        print print_message
+
     try:
         if state.pending_step or state.step_first_error is not None:
             result = StepResults.IGNORED
@@ -101,21 +113,16 @@ def _execute(step_info):
         if isinstance(inst, GrailValidationException):
             raise
         result = StepResults.FAILED
+        if not state.is_test_wrapped:
+            print_to_console()
+            raise
         if not state.step_first_error:
             state.step_first_error = inst
             state.step_stack = _generate_step_stack()
             state.step_exception_traceback = sys.exc_info()[2]
             exception_instance = inst
 
-    redirected_out.out_to_console()
-    state.step_execution_started = False
-    console_message = redirected_out.get_captured_output()
-    state.indentation = state.indentation[:-len(settings.indentation_const)]
-    print_message = step_info.get_description(output, result, exception_instance)
-    if console_message:
-        print_message += '\n'
-        print_message += console_message.rstrip()
-    print print_message
+    print_to_console()
     return output
 
 

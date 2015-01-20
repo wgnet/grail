@@ -28,7 +28,7 @@ class TestFailed(TestCase):
                                    'FAILED failed step: My Exception\n'
                                    '  File "{0}/tests/full_run/test_failed.py", line 15, in test_failed\n'
                                    '    self.failed_step()\n'
-                                   '  File "{0}/grail/steps.py", line 96, in _execute\n'
+                                   '  File "{0}/grail/steps.py", line 108, in _execute\n'
                                    '    output = step_info.run_function()\n'
                                    '  File "{0}/grail/step_info.py", line 48, in run_function\n'
                                    '    return self.function(*self.args, **self.kwargs)\n'

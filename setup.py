@@ -20,7 +20,7 @@ setup(
     include_package_data=True,
     author='Wargaming.NET',
     author_email='i_khrol@wargaming.net',
-    url='http://www.wargaming.net/',
+    url='https://github.com/wgnet/grail',
     install_requires=[
         'nose==1.3.3',
     ],

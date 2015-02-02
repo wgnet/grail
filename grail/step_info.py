@@ -11,6 +11,12 @@ class StepResults(object):
     PENDING = 'PENDING'
 
 
+def unicode_replace(object_):
+    if isinstance(object_, unicode):
+        return object_
+    return unicode(object_, errors='replace')
+
+
 class StepInfo(object):
     description = ''
     pending = False
@@ -40,7 +46,7 @@ class StepInfo(object):
             kwargs = {k: v for k, v in kwargs.items() if v}
         if len(args) == 0 and len(kwargs) == 0:
             return ''
-        args = map(unicode, args)
+        args = map(unicode_replace, args)
         kw_arguments = [u'{0}={1}'.format(k, v) for k, v in kwargs.items()]
         return u' (' + u', '.join(args + kw_arguments) + u')'
 
@@ -64,7 +70,7 @@ class StepInfo(object):
                 message += self.description
                 message += self._get_arguments_string()
         if self.log_output and output:
-            message += u' -> ' + unicode(output)
+            message += u' -> ' + unicode_replace(output)
         if exception_instance:
-            message += u': %s' % exception_instance
+            message += u': %s' % unicode_replace(str(exception_instance))
         return message

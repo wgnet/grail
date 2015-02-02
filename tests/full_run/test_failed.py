@@ -28,9 +28,9 @@ class TestFailed(TestCase):
                                    'FAILED failed step: My Exception\n'
                                    '  File "{0}/tests/full_run/test_failed.py", line 15, in test_failed\n'
                                    '    self.failed_step()\n'
-                                   '  File "{0}/grail/steps.py", line 108, in _execute\n'
+                                   '  File "{0}/grail/steps.py", line 114, in _execute\n'
                                    '    output = step_info.run_function()\n'
-                                   '  File "{0}/grail/step_info.py", line 48, in run_function\n'
+                                   '  File "{0}/grail/step_info.py", line 54, in run_function\n'
                                    '    return self.function(*self.args, **self.kwargs)\n'
                                    '  File "{0}/tests/full_run/test_failed.py", line 19, in failed_step\n'
                                    '    raise self.to_raise'.replace('/', sep_symbol).format(os.getcwd()))

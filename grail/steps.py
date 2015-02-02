@@ -39,7 +39,13 @@ class _RedirectOut(object):
         sys.stdout = self.temp
 
     def get_captured_output(self):
-        return ''.join(map(lambda line: state.indentation + line, self.step_messages))
+        def convert(line):
+            final_line = state.indentation + line
+            if isinstance(final_line, unicode):
+                return final_line
+            return unicode(final_line, errors='replace')
+
+        return u''.join(map(convert, self.step_messages))
 
 
 def _should_skip_step():
@@ -82,7 +88,7 @@ def _execute(step_info):
         state.indentation = state.indentation[:-len(settings.indentation_const)]
         print_message = step_info.get_description(output, result, exception_instance)
         if console_message:
-            print_message += '\n'
+            print_message += u'\n'
             print_message += console_message.rstrip()
         print print_message
 
@@ -108,13 +114,13 @@ def _execute(step_info):
                     output = step_info.run_function()
                 result = StepResults.PASSED
     except Exception as inst:
-        if step_info.step_group:
-            raise GrailValidationException(u'Unexpected exception from step group: %s' % inst)
-        if isinstance(inst, GrailValidationException):
-            raise
         result = StepResults.FAILED
         if not state.is_test_wrapped:
             print_to_console()
+            raise
+        if step_info.step_group:
+            raise GrailValidationException(u'Unexpected exception from step group: %s' % inst)
+        if isinstance(inst, GrailValidationException):
             raise
         if not state.step_first_error:
             state.step_first_error = inst

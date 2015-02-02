@@ -14,7 +14,7 @@ class StepResults(object):
 def unicode_replace(object_):
     if isinstance(object_, unicode):
         return object_
-    return unicode(object_, errors='replace')
+    return unicode(str(object_), errors='replace')
 
 
 class StepInfo(object):

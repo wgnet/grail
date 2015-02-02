@@ -33,3 +33,10 @@ class TestEncoding(TestCase):
             self.TestObjectFailed('test_failed').test_failed()
         except Exception as inst:
             eq_(inst, self.TestObjectFailed.to_raise)
+
+    @step
+    def eq_dict(self, a, b):
+        eq_(a, b)
+
+    def test_dict_params(self):
+        validate_method_output(self.eq_dict, u'PASSED eq dict ({}, {})', args=({}, {}))

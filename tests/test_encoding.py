@@ -20,6 +20,7 @@ class TestEncoding(TestCase):
 
     class TestObjectFailed(BaseTest):
         to_raise = Exception(korean_string)
+        to_raise_combined = Exception(u'text 올 д')
 
         def test_failed(self):
             self.failed_step()
@@ -28,11 +29,24 @@ class TestEncoding(TestCase):
         def failed_step(self):
             raise self.to_raise
 
+        def test_combined(self):
+            self.failed_combined()
+
+        @step
+        def failed_combined(self):
+            raise self.to_raise_combined
+
     def test_raising(self):
         try:
             self.TestObjectFailed('test_failed').test_failed()
         except Exception as inst:
             eq_(inst, self.TestObjectFailed.to_raise)
+
+    def test_raising_combined(self):
+        try:
+            self.TestObjectFailed('failed_combined').test_combined()
+        except Exception as inst:
+            eq_(inst, self.TestObjectFailed.to_raise_combined)
 
     @step
     def eq_dict(self, a, b):

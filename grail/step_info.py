@@ -12,9 +12,10 @@ class StepResults(object):
 
 
 def unicode_replace(object_):
-    if isinstance(object_, unicode):
-        return object_
-    return unicode(str(object_), errors='replace')
+    try:
+        return unicode(object_)
+    except UnicodeDecodeError:
+        return unicode(str(object_), errors='replace')
 
 
 class StepInfo(object):
@@ -72,5 +73,5 @@ class StepInfo(object):
         if self.log_output and output:
             message += u' -> ' + unicode_replace(output)
         if exception_instance:
-            message += u': %s' % unicode_replace(str(exception_instance))
+            message += u': %s' % unicode_replace(exception_instance)
         return message

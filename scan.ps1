@@ -9,7 +9,7 @@ trap
 Import-Module virtualenvwrapper
 mkvirtualenv grail
 
-pip install pep8==1.5.6
+pip install pep8==1.6.2
 if ($LastExitCode -ne 0) {
     throw "Failed to install pep8"
 }

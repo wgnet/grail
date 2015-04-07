@@ -1,9 +1,13 @@
 from unittest import TestCase
+
 from nose.tools import eq_
+
 from grail import step
 from tests.utils import validate_method_output
 
-failure_exception = Exception('Correct exception')
+
+failure_exception = TestCase.failureException('Failure exception')
+error_exception = Exception('Error exception')
 
 
 @step
@@ -16,36 +20,74 @@ def failed_step():
     raise failure_exception
 
 
-def method_to_raise():
+@step
+def error_step():
+    raise error_exception
+
+
+def method_fail():
     passed_step()
     failed_step()
     raise Exception('we should not reach this')
 
 
 @step(step_group=True)
-def group():
+def failed_group():
     passed_step()
     failed_step()
     raise Exception('we should not reach this too')
 
 
-def method_to_raise_group():
-    group()
+def method_fail_group():
+    failed_group()
+    raise Exception('we should not reach this even here')
+
+
+def method_error():
+    passed_step()
+    error_step()
+    raise Exception('we should not reach this')
+
+
+@step(step_group=True)
+def error_group():
+    passed_step()
+    error_step()
+    raise Exception('we should not reach this too')
+
+
+def method_error_group():
+    error_group()
     raise Exception('we should not reach this even here')
 
 
 class TestDirectHandling(TestCase):
-    def test_direct_exception_handling(self):
+    def test_method_fail(self):
         try:
-            validate_method_output(method_to_raise, 'PASSED passed step\n'
-                                                    'FAILED failed step')
+            validate_method_output(method_fail, 'PASSED passed step\n'
+                                                'FAILED failed step')
         except Exception as inst:
             eq_(inst, failure_exception)
 
-    def test_direct_handle_group(self):
+    def test_group_fail(self):
         try:
-            validate_method_output(method_to_raise_group, 'FAILED group\n'
-                                                          '  PASSED passed step\n'
-                                                          '  FAILED failed step')
+            validate_method_output(method_fail_group, 'FAILED failed group\n'
+                                                      '  PASSED passed step\n'
+                                                      '  FAILED failed step')
         except Exception as inst:
             eq_(inst, failure_exception)
+
+    def test_method_error(self):
+        try:
+            validate_method_output(method_error, 'PASSED passed step\n'
+                                                 'ERROR error step')
+        except Exception as inst:
+            eq_(inst, error_exception)
+
+    def test_group_error(self):
+        try:
+            validate_method_output(method_error_group, 'ERROR error group\n'
+                                                       '  PASSED passed step\n'
+                                                       '  ERROR error step')
+        except Exception as inst:
+            eq_(inst, error_exception)

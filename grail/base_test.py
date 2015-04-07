@@ -23,9 +23,7 @@ def handle_steps(func):
                 for line in step_stack:
                     print '  File "%s", line %i, in %s\n    %s' % line
                 print ''.join(traceback.format_tb(step_exception_traceback))
-                # Stupid hack to workaround W602 regexp in pep8
-                _workaround_w602 = lambda: step_first_error
-                raise _workaround_w602(), None, step_exception_traceback
+                raise step_first_error, None, step_exception_traceback
             if pending_step and not settings.export_mode:
                 raise Exception('Test is failed as there are pending steps')
             return result

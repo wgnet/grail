@@ -1,5 +1,6 @@
 import traceback
 import sys
+from unittest import TestCase
 
 import grail.state as state
 import grail.settings as settings
@@ -102,7 +103,10 @@ def _execute(step_info):
             if step_info.step_group:
                 output = step_info.run_function()
                 if state.step_first_error:
-                    result = StepResults.FAILED
+                    if isinstance(state.step_first_error, TestCase.failureException):
+                        result = StepResults.FAILED
+                    else:
+                        result = StepResults.ERROR
                 elif state.pending_step:
                     result = StepResults.PENDING
                 else:
@@ -114,7 +118,10 @@ def _execute(step_info):
                     output = step_info.run_function()
                 result = StepResults.PASSED
     except Exception as inst:
-        result = StepResults.FAILED
+        if isinstance(inst, TestCase.failureException):
+            result = StepResults.FAILED
+        else:
+            result = StepResults.ERROR
         if not state.is_test_wrapped:
             print_to_console()
             raise

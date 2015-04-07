@@ -1,4 +1,5 @@
 import inspect
+
 from nose.tools import assert_not_equal
 
 import grail.settings as settings
@@ -9,6 +10,7 @@ class StepResults(object):
     FAILED = 'FAILED'
     IGNORED = 'IGNORED'
     PENDING = 'PENDING'
+    ERROR = 'ERROR'
 
 
 def unicode_replace(object_):

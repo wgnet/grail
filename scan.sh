@@ -11,7 +11,7 @@ function verify_exit_code
 
 source ../env/bin/activate
 
-pip install pep8==1.5.6
+pip install pep8==1.6.2
 verify_exit_code "Failed to install pep8 package"
 
 pep8 --ignore=E501 ./

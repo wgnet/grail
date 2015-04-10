@@ -7,14 +7,14 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Grail &mdash; Grail 1.0.1 documentation</title>
+  <title>Grail &mdash; Grail 1.0.8 documentation</title>
   
 
   
   
 
   
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
 
   
   
@@ -28,7 +28,9 @@
   
 
   
-    <link rel="top" title="Grail 1.0.1 documentation" href="index.html"/>
+
+  
+    <link rel="top" title="Grail 1.0.8 documentation" href="index.html"/>
         <link rel="prev" title="Welcome to Grail’s documentation!" href="index.html"/> 
 
   
@@ -43,9 +45,12 @@
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-nav-search">
-        <a href="index.html" class="fa fa-home"> Grail</a>
-        <div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="search.html" method="get">
+        
+          <a href="index.html" class="fa fa-home"> Grail</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
@@ -55,8 +60,9 @@
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
         
-        
-            <ul class="current">
+          
+          
+              <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="">Grail</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#about">About</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#basic-usage">Basic Usage</a></li>
@@ -67,6 +73,7 @@
 </li>
 </ul>
 
+          
         
       </div>
       &nbsp;
@@ -97,7 +104,7 @@
   </ul>
   <hr/>
 </div>
-          <div role="main">
+          <div role="main" class="document">
             
   <div class="section" id="grail">
 <h1>Grail<a class="headerlink" href="#grail" title="Permalink to this headline">¶</a></h1>
@@ -116,8 +123,8 @@
 <div class="section" id="basic-usage">
 <h2>Basic Usage<a class="headerlink" href="#basic-usage" title="Permalink to this headline">¶</a></h2>
 <div class="line-block">
-<div class="line"><tt class="docutils literal"><span class="pre">&#64;step</span></tt> is a basic concept of Grail library. It&#8217;s decorator which transforms method or function to step.</div>
-<div class="line">If you want to use steps your test classes should inherit <tt class="docutils literal"><span class="pre">BaseTest</span></tt>.</div>
+<div class="line"><code class="docutils literal"><span class="pre">&#64;step</span></code> is a basic concept of Grail library. It&#8217;s decorator which transforms method or function to step.</div>
+<div class="line">If you want to use steps your test classes should inherit <code class="docutils literal"><span class="pre">BaseTest</span></code>.</div>
 <div class="line">When you are doing your tests based on Grail all your test logic should be covered with steps.</div>
 </div>
 <p>The simple test demonstrating basic usage:</p>
@@ -134,7 +141,7 @@
 </pre></div>
 </div>
 <p>Such test output will be:</p>
-<p><tt class="docutils literal"><span class="pre">PASSED</span> <span class="pre">login</span> <span class="pre">to</span> <span class="pre">application</span></tt></p>
+<p><code class="docutils literal"><span class="pre">PASSED</span> <span class="pre">login</span> <span class="pre">to</span> <span class="pre">application</span></code></p>
 </div>
 <div class="section" id="logging-parameters-and-output">
 <h2>Logging parameters and output<a class="headerlink" href="#logging-parameters-and-output" title="Permalink to this headline">¶</a></h2>
@@ -160,8 +167,8 @@
 </div>
 <p>Output will contain all execution details:</p>
 <div class="line-block">
-<div class="line"><tt class="docutils literal"><span class="pre">PASSED</span> <span class="pre">do</span> <span class="pre">some</span> <span class="pre">calculation</span> <span class="pre">(2,</span> <span class="pre">second_param=3)</span> <span class="pre">-&gt;</span> <span class="pre">5</span></tt></div>
-<div class="line"><tt class="docutils literal"><span class="pre">PASSED</span> <span class="pre">verify</span> <span class="pre">result</span> <span class="pre">(5)</span></tt></div>
+<div class="line"><code class="docutils literal"><span class="pre">PASSED</span> <span class="pre">do</span> <span class="pre">some</span> <span class="pre">calculation</span> <span class="pre">(2,</span> <span class="pre">second_param=3)</span> <span class="pre">-&gt;</span> <span class="pre">5</span></code></div>
+<div class="line"><code class="docutils literal"><span class="pre">PASSED</span> <span class="pre">verify</span> <span class="pre">result</span> <span class="pre">(5)</span></code></div>
 </div>
 </div>
 <div class="section" id="step-options">
@@ -170,7 +177,7 @@
 <h3>description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h3>
 <p>By default step name is method name split by underscores. In the majority of cases it&#8217;s enough if you are writing readable code.
 But there are situations where step description is not so easy to put into method name.
-For such cases there is a <tt class="docutils literal"><span class="pre">description</span></tt> parameter.</p>
+For such cases there is a <code class="docutils literal"><span class="pre">description</span></code> parameter.</p>
 <div class="code python highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">grail</span> <span class="kn">import</span> <span class="n">BaseTest</span><span class="p">,</span> <span class="n">step</span>
 
 
@@ -190,13 +197,13 @@ For such cases there is a <tt class="docutils literal"><span class="pre">descrip
 </div>
 <p>Such test script will generate the following:</p>
 <div class="line-block">
-<div class="line"><tt class="docutils literal"><span class="pre">PASSED</span> <span class="pre">login</span> <span class="pre">to</span> <span class="pre">application</span></tt></div>
-<div class="line"><tt class="docutils literal"><span class="pre">PASSED</span> <span class="pre">Some</span> <span class="pre">tricky</span> <span class="pre">actions</span> <span class="pre">with</span> <span class="pre">the</span> <span class="pre">application</span> <span class="pre">which</span> <span class="pre">I</span> <span class="pre">can't</span> <span class="pre">put</span> <span class="pre">to</span> <span class="pre">method</span> <span class="pre">name</span></tt></div>
+<div class="line"><code class="docutils literal"><span class="pre">PASSED</span> <span class="pre">login</span> <span class="pre">to</span> <span class="pre">application</span></code></div>
+<div class="line"><code class="docutils literal"><span class="pre">PASSED</span> <span class="pre">Some</span> <span class="pre">tricky</span> <span class="pre">actions</span> <span class="pre">with</span> <span class="pre">the</span> <span class="pre">application</span> <span class="pre">which</span> <span class="pre">I</span> <span class="pre">can't</span> <span class="pre">put</span> <span class="pre">to</span> <span class="pre">method</span> <span class="pre">name</span></code></div>
 </div>
 </div>
 <div class="section" id="pending">
 <h3>pending<a class="headerlink" href="#pending" title="Permalink to this headline">¶</a></h3>
-<p>If step method is created but not implemented you can specify <tt class="docutils literal"><span class="pre">pending</span></tt> property. It will fail corresponding test execution but
+<p>If step method is created but not implemented you can specify <code class="docutils literal"><span class="pre">pending</span></code> property. It will fail corresponding test execution but
 at the same time you can have full test case description (e.g. for manual execution).</p>
 <p>Example:</p>
 <div class="code python highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">grail</span> <span class="kn">import</span> <span class="n">BaseTest</span><span class="p">,</span> <span class="n">step</span>
@@ -223,28 +230,28 @@ at the same time you can have full test case description (e.g. for manual execut
 </div>
 <p>Test execution output:</p>
 <div class="line-block">
-<div class="line"><tt class="docutils literal"><span class="pre">PASSED</span> <span class="pre">first</span> <span class="pre">implemented</span> <span class="pre">step</span></tt></div>
+<div class="line"><code class="docutils literal"><span class="pre">PASSED</span> <span class="pre">first</span> <span class="pre">implemented</span> <span class="pre">step</span></code></div>
 <div class="line-block">
-<div class="line"><tt class="docutils literal"><span class="pre">Some</span> <span class="pre">implemented</span> <span class="pre">actions</span></tt></div>
+<div class="line"><code class="docutils literal"><span class="pre">Some</span> <span class="pre">implemented</span> <span class="pre">actions</span></code></div>
 </div>
-<div class="line"><tt class="docutils literal"><span class="pre">PENDING</span> <span class="pre">second</span> <span class="pre">pending</span> <span class="pre">step</span></tt></div>
-<div class="line"><tt class="docutils literal"><span class="pre">IGNORED</span> <span class="pre">some</span> <span class="pre">third</span> <span class="pre">step</span></tt></div>
+<div class="line"><code class="docutils literal"><span class="pre">PENDING</span> <span class="pre">second</span> <span class="pre">pending</span> <span class="pre">step</span></code></div>
+<div class="line"><code class="docutils literal"><span class="pre">IGNORED</span> <span class="pre">some</span> <span class="pre">third</span> <span class="pre">step</span></code></div>
 <div class="line"><br /></div>
-<div class="line"><tt class="docutils literal"><span class="pre">Error</span></tt></div>
-<div class="line"><tt class="docutils literal"><span class="pre">Traceback</span> <span class="pre">(most</span> <span class="pre">recent</span> <span class="pre">call</span> <span class="pre">last):</span></tt></div>
+<div class="line"><code class="docutils literal"><span class="pre">Error</span></code></div>
+<div class="line"><code class="docutils literal"><span class="pre">Traceback</span> <span class="pre">(most</span> <span class="pre">recent</span> <span class="pre">call</span> <span class="pre">last):</span></code></div>
 <div class="line-block">
-<div class="line"><tt class="docutils literal"><span class="pre">File</span> <span class="pre">&quot;/home/i_khrol/PyCharm/grail/grail/base_test.py&quot;,</span> <span class="pre">line</span> <span class="pre">30,</span> <span class="pre">in</span> <span class="pre">wrapper</span></tt></div>
+<div class="line"><code class="docutils literal"><span class="pre">File</span> <span class="pre">&quot;/home/i_khrol/PyCharm/grail/grail/base_test.py&quot;,</span> <span class="pre">line</span> <span class="pre">30,</span> <span class="pre">in</span> <span class="pre">wrapper</span></code></div>
 <div class="line-block">
-<div class="line"><tt class="docutils literal"><span class="pre">raise</span> <span class="pre">Exception('Test</span> <span class="pre">is</span> <span class="pre">failed</span> <span class="pre">as</span> <span class="pre">there</span> <span class="pre">are</span> <span class="pre">pending</span> <span class="pre">steps')</span></tt></div>
+<div class="line"><code class="docutils literal"><span class="pre">raise</span> <span class="pre">Exception('Test</span> <span class="pre">is</span> <span class="pre">failed</span> <span class="pre">as</span> <span class="pre">there</span> <span class="pre">are</span> <span class="pre">pending</span> <span class="pre">steps')</span></code></div>
 </div>
 </div>
-<div class="line"><tt class="docutils literal"><span class="pre">Exception:</span> <span class="pre">Test</span> <span class="pre">is</span> <span class="pre">failed</span> <span class="pre">as</span> <span class="pre">there</span> <span class="pre">are</span> <span class="pre">pending</span> <span class="pre">steps</span></tt></div>
+<div class="line"><code class="docutils literal"><span class="pre">Exception:</span> <span class="pre">Test</span> <span class="pre">is</span> <span class="pre">failed</span> <span class="pre">as</span> <span class="pre">there</span> <span class="pre">are</span> <span class="pre">pending</span> <span class="pre">steps</span></code></div>
 </div>
 </div>
 <div class="section" id="step-group">
 <h3>step_group<a class="headerlink" href="#step-group" title="Permalink to this headline">¶</a></h3>
 <div class="line-block">
-<div class="line">If you want to call one step from another you should use <tt class="docutils literal"><span class="pre">step_group</span></tt>. It&#8217;s special step which is a set of other steps.</div>
+<div class="line">If you want to call one step from another you should use <code class="docutils literal"><span class="pre">step_group</span></code>. It&#8217;s special step which is a set of other steps.</div>
 <div class="line"><em>Important</em>: Like test itself step group should be based only on steps.</div>
 </div>
 <p>Example below also shows that there is no limitation where you should store your steps.
@@ -278,11 +285,11 @@ It could be any class method, function. You can also call the same step multiple
 </div>
 <p>The output:</p>
 <div class="line-block">
-<div class="line"><tt class="docutils literal"><span class="pre">PASSED</span> <span class="pre">complex</span> <span class="pre">step</span> <span class="pre">based</span> <span class="pre">on</span> <span class="pre">other</span> <span class="pre">steps</span></tt></div>
+<div class="line"><code class="docutils literal"><span class="pre">PASSED</span> <span class="pre">complex</span> <span class="pre">step</span> <span class="pre">based</span> <span class="pre">on</span> <span class="pre">other</span> <span class="pre">steps</span></code></div>
 <div class="line-block">
-<div class="line"><tt class="docutils literal"><span class="pre">PASSED</span> <span class="pre">step</span> <span class="pre">from</span> <span class="pre">another</span> <span class="pre">class</span></tt></div>
-<div class="line"><tt class="docutils literal"><span class="pre">PASSED</span> <span class="pre">some</span> <span class="pre">simple</span> <span class="pre">action</span> <span class="pre">one</span></tt></div>
-<div class="line"><tt class="docutils literal"><span class="pre">PASSED</span> <span class="pre">step</span> <span class="pre">from</span> <span class="pre">another</span> <span class="pre">class</span></tt></div>
+<div class="line"><code class="docutils literal"><span class="pre">PASSED</span> <span class="pre">step</span> <span class="pre">from</span> <span class="pre">another</span> <span class="pre">class</span></code></div>
+<div class="line"><code class="docutils literal"><span class="pre">PASSED</span> <span class="pre">some</span> <span class="pre">simple</span> <span class="pre">action</span> <span class="pre">one</span></code></div>
+<div class="line"><code class="docutils literal"><span class="pre">PASSED</span> <span class="pre">step</span> <span class="pre">from</span> <span class="pre">another</span> <span class="pre">class</span></code></div>
 </div>
 </div>
 </div>
@@ -293,8 +300,8 @@ It could be any class method, function. You can also call the same step multiple
 <li>skip some parameters in logging</li>
 <li>put some values in the middle of the message</li>
 </ul>
-<p>If you want to do this you should set <tt class="docutils literal"><span class="pre">format_description=True</span></tt>.
-In this case <tt class="docutils literal"><span class="pre">description.format(*args,</span> <span class="pre">**kwargs)</span></tt> will be used as step description.</p>
+<p>If you want to do this you should set <code class="docutils literal"><span class="pre">format_description=True</span></code>.
+In this case <code class="docutils literal"><span class="pre">description.format(*args,</span> <span class="pre">**kwargs)</span></code> will be used as step description.</p>
 <div class="code python highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">grail</span> <span class="kn">import</span> <span class="n">BaseTest</span><span class="p">,</span> <span class="n">step</span>
 
 
@@ -311,18 +318,18 @@ In this case <tt class="docutils literal"><span class="pre">description.format(*
 </div>
 <p>Output will be like this:</p>
 <div class="line-block">
-<div class="line"><tt class="docutils literal"><span class="pre">PASSED</span> <span class="pre">Some</span> <span class="pre">info:</span> <span class="pre">value,</span> <span class="pre">another</span> <span class="pre">info:</span> <span class="pre">kw_value</span></tt></div>
+<div class="line"><code class="docutils literal"><span class="pre">PASSED</span> <span class="pre">Some</span> <span class="pre">info:</span> <span class="pre">value,</span> <span class="pre">another</span> <span class="pre">info:</span> <span class="pre">kw_value</span></code></div>
 <div class="line-block">
-<div class="line"><tt class="docutils literal"><span class="pre">value</span></tt></div>
-<div class="line"><tt class="docutils literal"><span class="pre">kw_value</span></tt></div>
-<div class="line"><tt class="docutils literal"><span class="pre">100500</span></tt></div>
+<div class="line"><code class="docutils literal"><span class="pre">value</span></code></div>
+<div class="line"><code class="docutils literal"><span class="pre">kw_value</span></code></div>
+<div class="line"><code class="docutils literal"><span class="pre">100500</span></code></div>
 </div>
 </div>
 </div>
 <div class="section" id="treat-nested-steps-as-methods">
 <h3>treat_nested_steps_as_methods<a class="headerlink" href="#treat-nested-steps-as-methods" title="Permalink to this headline">¶</a></h3>
 <p>It&#8217;s forbidden to call steps from each other if it&#8217;s not step group.
-But if you <em>really</em> need it you can tell caller to ignore <tt class="docutils literal"><span class="pre">&#64;step</span></tt> functionality within itself.</p>
+But if you <em>really</em> need it you can tell caller to ignore <code class="docutils literal"><span class="pre">&#64;step</span></code> functionality within itself.</p>
 <div class="code python highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">grail</span> <span class="kn">import</span> <span class="n">BaseTest</span><span class="p">,</span> <span class="n">step</span>
 
 
@@ -341,7 +348,7 @@ But if you <em>really</em> need it you can tell caller to ignore <tt class="docu
 </div>
 <p>Output will not contain description for the internal step:</p>
 <div class="line-block">
-<div class="line"><tt class="docutils literal"><span class="pre">PASSED</span> <span class="pre">external</span> <span class="pre">step</span></tt></div>
+<div class="line"><code class="docutils literal"><span class="pre">PASSED</span> <span class="pre">external</span> <span class="pre">step</span></code></div>
 </div>
 </div>
 <div class="section" id="log-output">
@@ -366,8 +373,34 @@ But if you <em>really</em> need it you can tell caller to ignore <tt class="docu
 </div>
 <p>Output:</p>
 <div class="line-block">
-<div class="line"><tt class="docutils literal"><span class="pre">PASSED</span> <span class="pre">log</span> <span class="pre">output</span> <span class="pre">-&gt;</span> <span class="pre">Important</span> <span class="pre">output</span></tt></div>
-<div class="line"><tt class="docutils literal"><span class="pre">PASSED</span> <span class="pre">do</span> <span class="pre">not</span> <span class="pre">log</span> <span class="pre">output</span></tt></div>
+<div class="line"><code class="docutils literal"><span class="pre">PASSED</span> <span class="pre">log</span> <span class="pre">output</span> <span class="pre">-&gt;</span> <span class="pre">Important</span> <span class="pre">output</span></code></div>
+<div class="line"><code class="docutils literal"><span class="pre">PASSED</span> <span class="pre">do</span> <span class="pre">not</span> <span class="pre">log</span> <span class="pre">output</span></code></div>
+</div>
+</div>
+<div class="section" id="log-input">
+<h3>log_input<a class="headerlink" href="#log-input" title="Permalink to this headline">¶</a></h3>
+<p>You can also switch off input logging for step.</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">grail</span> <span class="kn">import</span> <span class="n">BaseTest</span><span class="p">,</span> <span class="n">step</span>
+
+
+<span class="k">class</span> <span class="nc">MyDisableLogInputTest</span><span class="p">(</span><span class="n">BaseTest</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">test_some_feature</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">log_input</span><span class="p">(</span><span class="s">&#39;input data&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">do_not_log_input</span><span class="p">(</span><span class="s">&#39;input data&#39;</span><span class="p">)</span>
+
+    <span class="nd">@step</span>
+    <span class="k">def</span> <span class="nf">log_input</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_data</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+    <span class="nd">@step</span><span class="p">(</span><span class="n">log_input</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">do_not_log_input</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_data</span><span class="p">):</span>
+        <span class="k">pass</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="line-block">
+<div class="line"><code class="docutils literal"><span class="pre">PASSED</span> <span class="pre">log</span> <span class="pre">input</span> <span class="pre">(input</span> <span class="pre">data)</span></code></div>
+<div class="line"><code class="docutils literal"><span class="pre">PASSED</span> <span class="pre">do</span> <span class="pre">not</span> <span class="pre">log</span> <span class="pre">input</span></code></div>
 </div>
 </div>
 </div>
@@ -375,17 +408,17 @@ But if you <em>really</em> need it you can tell caller to ignore <tt class="docu
 <h2>Export Mode<a class="headerlink" href="#export-mode" title="Permalink to this headline">¶</a></h2>
 <p>Regular test automation process assumes some manual test cases that should be automated.
 With Grail you can do vise versa - write code and get manual test cases.
-In order to generate test description from the code you should set <tt class="docutils literal"><span class="pre">grail.settings.export_mode=True</span></tt>.
+In order to generate test description from the code you should set <code class="docutils literal"><span class="pre">grail.settings.export_mode=True</span></code>.
 With this setting tests will be executed but steps&#8217; internal will not be called.
 So you can have your test description when your scripts are not implemented yet or
 automated test execution is blocked due to any other reasons.</p>
 <div class="section" id="important-things-to-keep-in-mind">
 <h3>Important things to keep in mind<a class="headerlink" href="#important-things-to-keep-in-mind" title="Permalink to this headline">¶</a></h3>
-<p>In <tt class="docutils literal"><span class="pre">export_mode</span></tt> only <tt class="docutils literal"><span class="pre">setUp</span></tt> and tests are executed. All the fixtures are skipped.
-It&#8217;s important to have your <tt class="docutils literal"><span class="pre">setUp</span></tt> and tests be implemented fully with <tt class="docutils literal"><span class="pre">&#64;step</span></tt>-annotated methods and functions.
+<p>In <code class="docutils literal"><span class="pre">export_mode</span></code> only <code class="docutils literal"><span class="pre">setUp</span></code> and tests are executed. All the fixtures are skipped.
+It&#8217;s important to have your <code class="docutils literal"><span class="pre">setUp</span></code> and tests be implemented fully with <code class="docutils literal"><span class="pre">&#64;step</span></code>-annotated methods and functions.
 For other fixtures it&#8217;s up-to-you to use steps or not.</p>
-<p>All <tt class="docutils literal"><span class="pre">&#64;step</span></tt> features are enabled during export.</p>
-<p>Empty params are not included to step description in <tt class="docutils literal"><span class="pre">export_mode</span></tt>.</p>
+<p>All <code class="docutils literal"><span class="pre">&#64;step</span></code> features are enabled during export.</p>
+<p>Empty params are not included to step description in <code class="docutils literal"><span class="pre">export_mode</span></code>.</p>
 </div>
 <div class="section" id="example">
 <h3>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h3>
@@ -424,13 +457,13 @@ For other fixtures it&#8217;s up-to-you to use steps or not.</p>
 </div>
 <p>Output which can be used as manual test case:</p>
 <div class="line-block">
-<div class="line"><tt class="docutils literal"><span class="pre">login</span> <span class="pre">to</span> <span class="pre">application</span></tt></div>
-<div class="line"><tt class="docutils literal"><span class="pre">one</span> <span class="pre">more</span> <span class="pre">step</span> <span class="pre">(Step</span> <span class="pre">input</span> <span class="pre">1)</span></tt></div>
-<div class="line"><tt class="docutils literal"><span class="pre">Some</span> <span class="pre">step</span> <span class="pre">that</span> <span class="pre">will</span> <span class="pre">be</span> <span class="pre">implemented</span></tt></div>
-<div class="line"><tt class="docutils literal"><span class="pre">step</span> <span class="pre">group</span></tt></div>
+<div class="line"><code class="docutils literal"><span class="pre">login</span> <span class="pre">to</span> <span class="pre">application</span></code></div>
+<div class="line"><code class="docutils literal"><span class="pre">one</span> <span class="pre">more</span> <span class="pre">step</span> <span class="pre">(Step</span> <span class="pre">input</span> <span class="pre">1)</span></code></div>
+<div class="line"><code class="docutils literal"><span class="pre">Some</span> <span class="pre">step</span> <span class="pre">that</span> <span class="pre">will</span> <span class="pre">be</span> <span class="pre">implemented</span></code></div>
+<div class="line"><code class="docutils literal"><span class="pre">step</span> <span class="pre">group</span></code></div>
 <div class="line-block">
-<div class="line"><tt class="docutils literal"><span class="pre">one</span> <span class="pre">more</span> <span class="pre">step</span> <span class="pre">(Step</span> <span class="pre">input</span> <span class="pre">2)</span></tt></div>
-<div class="line"><tt class="docutils literal"><span class="pre">one</span> <span class="pre">more</span> <span class="pre">step</span></tt></div>
+<div class="line"><code class="docutils literal"><span class="pre">one</span> <span class="pre">more</span> <span class="pre">step</span> <span class="pre">(Step</span> <span class="pre">input</span> <span class="pre">2)</span></code></div>
+<div class="line"><code class="docutils literal"><span class="pre">one</span> <span class="pre">more</span> <span class="pre">step</span></code></div>
 </div>
 </div>
 </div>
@@ -457,7 +490,8 @@ For other fixtures it&#8217;s up-to-you to use steps or not.</p>
     </p>
   </div>
 
-  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
 </footer>
         </div>
       </div>
@@ -473,7 +507,7 @@ For other fixtures it&#8217;s up-to-you to use steps or not.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'1.0.1',
+            VERSION:'1.0.8',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

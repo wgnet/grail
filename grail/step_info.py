@@ -26,6 +26,7 @@ class StepInfo(object):
     step_group = False
     format_description = False
     treat_nested_steps_as_methods = False
+    log_input = True
     log_output = True
     function = None
     args = None
@@ -62,15 +63,12 @@ class StepInfo(object):
             assert_not_equal(result, StepResults.FAILED, 'Unexpected failure during export')
         else:
             message += result + ' '
-        if not self.description:
-            message += self._get_name_based_description()
-            message += self._get_arguments_string()
+        if self.format_description:
+            args, kwargs = self._get_clean_params()
+            message += self.description.format(*args, **kwargs)
         else:
-            if self.format_description:
-                args, kwargs = self._get_clean_params()
-                message += self.description.format(*args, **kwargs)
-            else:
-                message += self.description
+            message += self.description or self._get_name_based_description()
+            if self.log_input:
                 message += self._get_arguments_string()
         if self.log_output and output:
             message += u' -> ' + unicode_replace(output)

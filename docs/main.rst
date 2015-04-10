@@ -275,6 +275,33 @@ Output:
 | ``PASSED log output -> Important output``
 | ``PASSED do not log output``
 
+log_input
+`````````
+You can also switch off input logging for step.
+
+.. code:: python
+
+  from grail import BaseTest, step
+
+
+  class MyDisableLogInputTest(BaseTest):
+      def test_some_feature(self):
+          self.log_input('input data')
+          self.do_not_log_input('input data')
+
+      @step
+      def log_input(self, input_data):
+          pass
+
+      @step(log_input=False)
+      def do_not_log_input(self, input_data):
+          pass
+
+Output:
+
+| ``PASSED log input (input data)``
+| ``PASSED do not log input``
+
 Export Mode
 -----------
 Regular test automation process assumes some manual test cases that should be automated.

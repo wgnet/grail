@@ -151,6 +151,22 @@ class TestLogOutput(TestCase):
         validate_method_output(self.step_with_disabled_output, 'PASSED step with disabled output')
 
 
+class TestLogInput(TestCase):
+    @step
+    def step_with_logged_input(self, input):
+        pass
+
+    @step(log_input=False)
+    def step_with_not_logged_input(self, input):
+        pass
+
+    def test_enabled_input_logging(self):
+        validate_method_output(self.step_with_logged_input, 'PASSED step with logged input (data)', ['data'])
+
+    def test_disabled_input_logging(self):
+        validate_method_output(self.step_with_not_logged_input, 'PASSED step with not logged input', ['data'])
+
+
 class TestUnicode(TestCase):
     @step
     def step_with_returning_unicode(self):

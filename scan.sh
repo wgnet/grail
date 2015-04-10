@@ -11,8 +11,8 @@ function verify_exit_code
 
 source ../env/bin/activate
 
-pip install pep8==1.6.2
-verify_exit_code "Failed to install pep8 package"
+pip install pep8==1.6.2 teamcity-messages==1.12
+verify_exit_code "Failed to install python packages"
 
 pep8 --ignore=E501 ./
 verify_exit_code "There are pep8 errors"

@@ -1,6 +1,6 @@
 from setuptools import setup
 
-version = '1.0.8'
+version = '1.0.9'
 
 setup(
     name='grail',
@@ -19,9 +19,6 @@ setup(
                 'It helps to structure your tests and get rid of additional test documentation for your code.',
     include_package_data=True,
     author='Wargaming.NET',
-    author_email='i_khrol@wargaming.net',
-    url='https://github.com/wgnet/grail',
-    install_requires=[
-        'nose==1.3.3',
-    ],
+    author_email='web_qa_auto@wargaming.net',
+    url='https://github.com/wgnet/grail'
 )

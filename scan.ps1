@@ -9,7 +9,7 @@ trap
 Import-Module virtualenvwrapper
 mkvirtualenv grail
 
-pip install pep8==1.6.2 teamcity-messages==1.12
+pip install nose==1.3.3 pep8==1.6.2 teamcity-messages==1.12
 if ($LastExitCode -ne 0) {
     throw "Failed to install python packages"
 }

@@ -1,7 +1,5 @@
 import inspect
 
-from nose.tools import assert_not_equal
-
 import grail.settings as settings
 
 
@@ -60,7 +58,8 @@ class StepInfo(object):
     def get_description(self, output, result, exception_instance):
         message = ''
         if settings.export_mode:
-            assert_not_equal(result, StepResults.FAILED, 'Unexpected failure during export')
+            if result == StepResults.FAILED:
+                raise RuntimeError('Unexpected failure during export')
         else:
             message += result + ' '
         if self.format_description:

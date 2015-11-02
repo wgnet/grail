@@ -72,7 +72,7 @@ def _validate_step_info(step_info):
 
 
 def _execute(step_info):
-    if _should_skip_step():
+    if not settings.export_mode and _should_skip_step():
         return step_info.run_function()
 
     redirected_out = _RedirectOut()

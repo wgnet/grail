@@ -63,8 +63,7 @@ class StepInfo(object):
         else:
             message += result + ' '
         if self.format_description:
-            args, kwargs = self._get_clean_params()
-            message += self.description.format(*args, **kwargs)
+            message += self.description.format(*self.args, **self.kwargs)
         else:
             message += self.description or self._get_name_based_description()
             if self.log_input:

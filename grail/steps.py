@@ -52,6 +52,8 @@ class _RedirectOut(object):
 def _should_skip_step():
     if settings.disable_steps:
         return True
+    if settings.export_mode:
+        return False
     for filename, line_number, func_name, text in traceback.extract_stack():
         if func_name in settings.skip_func:
             return True

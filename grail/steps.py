@@ -142,7 +142,7 @@ def _execute(step_info):
 
 
 def step(func=None, description='', pending=False, step_group=False, format_description=False,
-         treat_nested_steps_as_methods=False, log_output=True, log_input=True):
+         treat_nested_steps_as_methods=False, log_output=True, log_input=True, clean_params=True):
 
     step_info = StepInfo()
 
@@ -163,6 +163,7 @@ def step(func=None, description='', pending=False, step_group=False, format_desc
         step_info.treat_nested_steps_as_methods = treat_nested_steps_as_methods
         step_info.log_output = log_output
         step_info.log_input = log_input
+        step_info.clean_params = clean_params
         return params_wrapper
     else:
         step_info.function = func

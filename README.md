@@ -1,6 +1,8 @@
-=====
 Grail
 =====
+
+[![Build Status](https://travis-ci.org/wgnet/grail.svg?branch=master)](https://travis-ci.org/wgnet/grail)
+
 Grail is a library which allows test script creation based on steps.
 
 Library usage brings the following benefits to your tests:

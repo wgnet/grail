@@ -1,6 +1,6 @@
 from setuptools import setup
 
-version = '1.0.11'
+version = '1.0.11.1'
 
 setup(
     name='grail',

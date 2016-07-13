@@ -2,16 +2,16 @@ language: python
 python:
   - "2.7"
 install:
-  - pip install flake8
+  - "pip install flake8"
 script:
-  - flake8
-  - nosetests -v tests
+  - "flake8 ."
+  - "nosetests -v tests"
 deploy:
   provider: pypi
-  user: wg_webqaa
+  user: "wg_webqaa"
   password:
-    secure: Yi797XDs45RpNMiAhzNWrtk4c19JP1LtnSzvDQ/8pqiPdRurveEqUFvMrlaQh1HytwuafgJ/iM1QwQ6KNoY25NmYOK1XCrbdK01MFrH54QRsT0DiS59W/I8CGH/rXd4bRXNHwLn3flwHIWYTLsK9PiIpZt9o7heiE6Ihlxpv5LQ=
+    secure: "O7flzqBDZaUMT/+aBYAd8zaDXmdAjFdNyYWzeK6e8FDYYa+3b2/ITDQ4O7pI4lwhNkfIJX2HzClsC+/48TUGrzmq6kl/0eIHICKnOGjwMJvcPcp+ykDkUlEQlVK5UfixTI/dnYkCJtC3K0LyiqDzqq443kUM+nO6uqafFVa3fzo="
+  distributions: "sdist bdist_wheel"
   on:
     tags: true
-    distributions: sdist
     repo: wgnet/grail

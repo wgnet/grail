@@ -10,7 +10,7 @@ deploy:
   provider: pypi
   user: wg_webqaa
   password:
-    secure: DcVhS0+ivUH80Nod578mpOGw0VWt+IatNnek5ALmMEJstt7NZWVuv8ZpknfLWqEoTGcChDcmqnM59uTwEykUqJxQY4PPlKab3sfntp08hTqssIJ2ikvRBeIrTsaUGyzu+jpa4x1bDRtQmcxzjH6JtT45QsCHnvWvOpjpTI34X/w=
+    secure: Yi797XDs45RpNMiAhzNWrtk4c19JP1LtnSzvDQ/8pqiPdRurveEqUFvMrlaQh1HytwuafgJ/iM1QwQ6KNoY25NmYOK1XCrbdK01MFrH54QRsT0DiS59W/I8CGH/rXd4bRXNHwLn3flwHIWYTLsK9PiIpZt9o7heiE6Ihlxpv5LQ=
   on:
     tags: true
     distributions: sdist

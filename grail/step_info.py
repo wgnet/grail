@@ -1,4 +1,5 @@
 import inspect
+import time
 
 import grail.settings as settings
 
@@ -29,6 +30,7 @@ class StepInfo(object):
     function = None
     args = None
     kwargs = None
+    elapsed_time = 0
 
     def _get_clean_params(self):
         args = self.args
@@ -53,7 +55,10 @@ class StepInfo(object):
         return u' (' + u', '.join(args + kw_arguments) + u')'
 
     def run_function(self):
-        return self.function(*self.args, **self.kwargs)
+        start = time.time()
+        result = self.function(*self.args, **self.kwargs)
+        self.elapsed_time = time.time() - start
+        return result
 
     def get_description(self, output, result, exception_instance):
         message = ''
@@ -61,6 +66,8 @@ class StepInfo(object):
             if result == StepResults.FAILED:
                 raise RuntimeError('Unexpected failure during export')
         else:
+            if settings.print_step_time:
+                message += settings.step_time_template.format(self.elapsed_time)
             message += result + ' '
         if self.format_description:
             args, kwargs = self._get_clean_params()

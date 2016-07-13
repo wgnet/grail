@@ -30,8 +30,8 @@ class TestFailed(TestCase):
                                    '    self.failed_step()\n'
                                    '  File "{0}/grail/steps.py", line 120, in _execute\n'
                                    '    output = step_info.run_function()\n'
-                                   '  File "{0}/grail/step_info.py", line 56, in run_function\n'
-                                   '    return self.function(*self.args, **self.kwargs)\n'
+                                   '  File "{0}/grail/step_info.py", line 59, in run_function\n'
+                                   '    result = self.function(*self.args, **self.kwargs)\n'
                                    '  File "{0}/tests/full_run/test_failed.py", line 19, in failed_step\n'
                                    '    raise self.to_raise'.replace('/', sep_symbol).format(os.getcwd()))
         except Exception as inst:

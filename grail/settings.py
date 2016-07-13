@@ -1,5 +1,7 @@
 export_mode = False
 disable_steps = False
+print_step_time = False
+step_time_template = '[{0:4.2f}s] '
 indentation_const = '  '
 
 skip_func = ('setup',
